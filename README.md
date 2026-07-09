@@ -220,7 +220,7 @@ The repository includes screenshots demonstrating:
 Aspiring Software QA Engineer
 
 GitHub:
-https://github.com/your-github
+(https://github.com/thanhtrucnguyy-netizen/MoMo_Transfer_Testing)
 
 LinkedIn:
 https://linkedin.com/in/your-linkedin
