@@ -1,0 +1,195 @@
+{
+  "info": {
+    "_postman_id": "43cbfce3-4f55-49d4-851c-625d7f35e0c6",
+    "name": "Transfer Money",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55606612",
+    "_collection_link": "https://go.postman.co/collection/55606612-43cbfce3-4f55-49d4-851c-625d7f35e0c6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "MoMo",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sender_phone\": \"0901234567\",\n  \"receiver_phone\": \"0999999999\",\n  \"amount\": 50000.00,\n  \"description\": \"Thanh Truc chuyen tien\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/transfer",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "transfer"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "400 - Phone Not Registered",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/transfer",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "transfer"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Số điện thoại người nhận chưa đăng ký tài khoản MoMo.\"\n}"
+        },
+        {
+          "name": "TC_047 - Double Tap Confirm",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_phone\": \"0901234567\",\n  \"receiver_phone\": \"0999999999\",\n  \"amount\": 50000.00,\n  \"description\": \"Thanh Truc chuyen tien double tap\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/transfer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transfer"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Giao dịch thành công. Chỉ có 1 yêu cầu được xử lý để tránh trùng lặp.\",\n  \"transaction_id\": \"TXN_TC047_SUCCESS\"\n}"
+        },
+        {
+          "name": "TC_055 - Success",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_phone\": \"0901234567\",\n  \"receiver_phone\": \"0999999999\",\n  \"amount\": 100000.00,\n  \"description\": \"Thanh Truc chuyen tien\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/transfer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transfer"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Giao dịch thành công \",\n  \"transaction_id\": \"TXN_TC055_SUCCESS\"\n}"
+        },
+        {
+          "name": "TC_055 - Fail (Insufficient balance)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_phone\": \"0901234567\",\n  \"receiver_phone\": \"0342963008\",\n  \"amount\": 100000.00,\n  \"description\": \"Thanh Truc chuyen tien\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/transfer",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "transfer"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json",
+              "description": "",
+              "type": "text"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Giao dịch không thành công , tài khoản không đủ số dư\",\n  \"transaction_id\": \"TXN_TC055_Fail (Insufficient balance)\"\n}"
+        }
+      ]
+    }
+  ]
+}
